@@ -1,0 +1,35 @@
+__pycache__
+*.pth
+*/**/__pycache__
+*/*.pyc
+*/**/*.pyc
+*/**/**/*.pyc
+*/**/**/**/*.pyc
+*/**/**/**/**/*.pyc
+.mypy_cache
+
+result
+results
+results/
+data
+data/
+models
+models/
+server
+utils/
+clients/
+arxiv/
+
+# IPython notebook checkpoints
+.ipynb_checkpoints
+
+# Editor temporaries
+*.swn
+*.swo
+*.swp
+*~
+
+# macOS dir files
+.DS_Store
+
+.gdb_history
