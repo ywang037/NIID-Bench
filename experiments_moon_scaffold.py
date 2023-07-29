@@ -252,8 +252,8 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
 
     logger.info('Training network %s' % str(net_id))
 
-    train_acc = compute_accuracy(net, train_dataloader, moon_model=True, device=device)
-    test_acc, conf_matrix = compute_accuracy(net, test_dataloader, get_confusion_matrix=True, moon_model=True, device=device)
+    train_acc = compute_accuracy(net, train_dataloader, device=device)
+    test_acc, conf_matrix = compute_accuracy(net, test_dataloader, get_confusion_matrix=True, device=device)
 
     logger.info('>> Pre-Training Training accuracy: {}'.format(train_acc))
     logger.info('>> Pre-Training Test accuracy: {}'.format(test_acc))
@@ -339,8 +339,8 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
     if args.loss != 'l2norm':
         for previous_net in previous_nets:
             previous_net.to('cpu')
-    train_acc = compute_accuracy(net, train_dataloader, moon_model=True, device=device)
-    test_acc, conf_matrix = compute_accuracy(net, test_dataloader, get_confusion_matrix=True, moon_model=True, device=device)
+    train_acc = compute_accuracy(net, train_dataloader, device=device)
+    test_acc, conf_matrix = compute_accuracy(net, test_dataloader, get_confusion_matrix=True, device=device)
 
     logger.info('>> Training accuracy: %f' % train_acc)
     logger.info('>> Test accuracy: %f' % test_acc)
@@ -761,8 +761,8 @@ if __name__ == '__main__':
             logger.info('global n_test: %d' % len(test_dl_global))
 
 
-            train_acc = compute_accuracy(global_model, train_dl_global, moon_model=True)
-            test_acc, conf_matrix = compute_accuracy(global_model, test_dl_global, get_confusion_matrix=True, moon_model=True)
+            train_acc = compute_accuracy(global_model, train_dl_global)
+            test_acc, conf_matrix = compute_accuracy(global_model, test_dl_global, get_confusion_matrix=True)
 
 
             logger.info('>> Global Model Train accuracy: %f' % train_acc)
