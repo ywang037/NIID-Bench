@@ -1,4 +1,4 @@
-for alg in scaffold moon
+for alg in moon
 do
 	CUDA_VISIBLE_DEVICES=0 python experiments_moon_scaffold.py \
 		--model=convnet \
