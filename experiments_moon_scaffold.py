@@ -419,6 +419,7 @@ if __name__ == '__main__':
     logger.setLevel(logging.DEBUG)
     logger.info(device)
 
+    print(f"Starting experiment run with seed {args.init_seed:2d}")
     seed = args.init_seed
     logger.info("#" * 100)
     random.seed(seed)
@@ -453,6 +454,7 @@ if __name__ == '__main__':
     best_glob_acc=0.0
     glob_loss, glob_acc = [], []
 
+    print(f"Running algorithm: {args.alg}")
     if args.alg == 'scaffold':
         logger.info("Initializing nets")
         nets, local_model_meta_data, layer_type = init_nets(args.net_config, args.dropout_p, args.n_parties, args)
@@ -611,8 +613,8 @@ if __name__ == '__main__':
             logger.info(f'>> Global model test loss: {loss:.4f}'.format(loss))
             logger.info(f'>> Global model test accuracy: {acc:.4f}, historical best acc: {best_glob_acc:.4f}')
 
-   
-    glob_loss, glob_acc, glob_balacc, glob_auc = np.array(glob_loss), np.array(glob_acc)
+    print(f"Experiment completed at {datetime.datetime.now()}, saving results...")
+    glob_loss, glob_acc = np.array(glob_loss), np.array(glob_acc)
     # plot and save test loss curves
     plot_series(
         series=glob_loss,
@@ -637,15 +639,13 @@ if __name__ == '__main__':
         {
             'global_model_test_loss': glob_loss,
             'global_model_test_acc': glob_acc,
-            'global_model_test_auc': glob_auc,
-            'global_model_test_bal_acc': glob_balacc,
         },
         os.path.join(args.logdir, 'learning_curve_{}_{}.pt'.format(args.alg, args.model))
     )
     
     # record the experiment trial result
     record_accuracy(dir_path=exp_dir, experiment_num=args.init_seed, acc=best_glob_acc)
-
+    print(f"Results saved at path: {args.logdir}")
     
     time_end = time.time()
     time_end_stamp = time.strftime('%Y-%m-%d %H:%M:%S') # time_end_stamp = time.strftime('%y-%m-%d-%H-%M-%S')
