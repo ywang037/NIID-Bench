@@ -1,6 +1,6 @@
 for alg in scaffold moon
 do
-	python experiments.py \
+	CUDA_VISIBLE_DEVICES=0 python experiments.py \
 		--model=convnet \
 		--dataset=cifar10 \
 		--alg=$alg \
