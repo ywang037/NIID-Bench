@@ -400,7 +400,8 @@ if __name__ == '__main__':
         argument_path=args.log_file_name+'.json'
     
     with open(os.path.join(args.logdir, argument_path), 'w') as f:
-        json.dump(str(args), f)
+        # json.dump(str(args), f)
+        f.write(json.dumps(str(args.__dict__), indent=4))
     device = torch.device(args.device)
     for handler in logging.root.handlers[:]:
         logging.root.removeHandler(handler)
