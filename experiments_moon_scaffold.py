@@ -318,7 +318,7 @@ def local_train_net_scaffold(nets, selected, global_model, c_nets, c_global, arg
         # n_epoch = args.epochs
 
 
-        _, loc_test_acc, c_delta_para = train_net_scaffold(net_id, net, global_model, c_nets[net_id], c_global, train_dl_local[net_id], test_dl, args.n_epochs, args.lr, args.optimizer, device=device)
+        _, loc_test_acc, c_delta_para = train_net_scaffold(net_id, net, global_model, c_nets[net_id], c_global, train_dl_local[net_id], test_dl, args.epochs, args.lr, args.optimizer, device=device)
 
         c_nets[net_id].to('cpu')
         for key in total_delta:
@@ -378,7 +378,7 @@ def local_train_net_moon(nets, selected, args, train_dl_local, test_dl=None, glo
         # trainacc, testacc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local, test_dl, n_epoch, args.lr,
         #                                       args.optimizer, args.mu, args.temperature, args, round, device=device)
         # logger.info("net %d final test acc %f" % (net_id, testacc))
-        _, loc_test_acc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local[net_id], test_dl, args.n_epochs, args.lr, args.optimizer, args.mu, args.temperature, args, round, device=device)
+        _, loc_test_acc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local[net_id], test_dl, args.epochs, args.lr, args.optimizer, args.mu, args.temperature, args, round, device=device)
         avg_acc += loc_test_acc
 
     avg_acc /= len(selected)
