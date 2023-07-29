@@ -577,7 +577,7 @@ def put_trainable_parameters(net,X):
             params.data.copy_(X[offset:offset+numel].data.view_as(params.data))
         offset+=numel
 
-def compute_accuracy(model, dataloader, get_confusion_matrix=False, moon_model=False, device="cpu"):
+def compute_accuracy(model, dataloader, get_confusion_matrix=False, device="cpu"):
 
     was_training = False
     if model.training:
@@ -596,10 +596,11 @@ def compute_accuracy(model, dataloader, get_confusion_matrix=False, moon_model=F
         for tmp in dataloader:
             for batch_idx, (x, target) in enumerate(tmp):
                 x, target = x.to(device), target.to(device,dtype=torch.int64)
-                if moon_model:
-                    _, _, out = model(x)
-                else:
-                    out = model(x)
+                # if moon_model:
+                #     _, _, out = model(x)
+                # else:
+                #     out = model(x)
+                _, out = model(x)
                 _, pred_label = torch.max(out.data, 1)
 
                 total += x.data.size()[0]

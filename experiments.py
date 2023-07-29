@@ -61,83 +61,106 @@ def get_args():
 def init_nets(net_configs, dropout_p, n_parties, args):
 
     nets = {net_i: None for net_i in range(n_parties)}
-
-    if args.dataset in {'mnist', 'cifar10', 'svhn', 'fmnist'}:
-        n_classes = 10
-    elif args.dataset == 'celeba':
-        n_classes = 2
-    elif args.dataset == 'cifar100':
-        n_classes = 100
-    elif args.dataset == 'tinyimagenet':
-        n_classes = 200
-    elif args.dataset == 'femnist':
-        n_classes = 62
-    elif args.dataset == 'emnist':
-        n_classes = 47
-    elif args.dataset in {'a9a', 'covtype', 'rcv1', 'SUSY'}:
-        n_classes = 2
-    if args.use_projection_head:
-        add = ""
-        if "mnist" in args.dataset and args.model == "simple-cnn":
-            add = "-mnist"
-        for net_i in range(n_parties):
-            net = ModelFedCon(args.model+add, args.out_dim, n_classes, net_configs)
-            nets[net_i] = net
+    
+    if args.dataset.lower() in ("cifar10", "fmnist"):
+        num_classes = 10
+    elif args.dataset.lower() == "cifar100":
+        num_classes = 100
     else:
-        if args.alg == 'moon':
-            add = ""
-            if "mnist" in args.dataset and args.model == "simple-cnn":
-                add = "-mnist"
-            for net_i in range(n_parties):
-                net = ModelFedCon_noheader(args.model+add, args.out_dim, n_classes, net_configs)
-                nets[net_i] = net
-        else:
-            for net_i in range(n_parties):
-                if args.dataset == "generated":
-                    net = PerceptronModel()
-                elif args.model == "mlp":
-                    if args.dataset == 'covtype':
-                        input_size = 54
-                        output_size = 2
-                        hidden_sizes = [32,16,8]
-                    elif args.dataset == 'a9a':
-                        input_size = 123
-                        output_size = 2
-                        hidden_sizes = [32,16,8]
-                    elif args.dataset == 'rcv1':
-                        input_size = 47236
-                        output_size = 2
-                        hidden_sizes = [32,16,8]
-                    elif args.dataset == 'SUSY':
-                        input_size = 18
-                        output_size = 2
-                        hidden_sizes = [16,8]
-                    net = FcNet(input_size, hidden_sizes, output_size, dropout_p)
-                elif args.model == "vgg":
-                    net = vgg11()
-                elif args.model == "simple-cnn":
-                    if args.dataset in ("cifar10", "cinic10", "svhn"):
-                        net = SimpleCNN(input_dim=(16 * 5 * 5), hidden_dims=[120, 84], output_dim=10)
-                    elif args.dataset in ("mnist", 'femnist', 'fmnist'):
-                        net = SimpleCNNMNIST(input_dim=(16 * 4 * 4), hidden_dims=[120, 84], output_dim=10)
-                    elif args.dataset == 'celeba':
-                        net = SimpleCNN(input_dim=(16 * 5 * 5), hidden_dims=[120, 84], output_dim=2)
-                elif args.model == "vgg-9":
-                    if args.dataset in ("mnist", 'femnist'):
-                        net = ModerateCNNMNIST()
-                    elif args.dataset in ("cifar10", "cinic10", "svhn"):
-                        # print("in moderate cnn")
-                        net = ModerateCNN()
-                    elif args.dataset == 'celeba':
-                        net = ModerateCNN(output_dim=2)
-                elif args.model == "resnet":
-                    net = ResNet50_cifar10()
-                elif args.model == "vgg16":
-                    net = vgg16()
-                else:
-                    print("not supported yet")
-                    exit(1)
-                nets[net_i] = net
+        raise ValueError("Choose dataset from: CIFAR10/CIFAR100/FMNIST")
+    
+    if args.dataset.lower() in ("cifar10", "cifar100"):
+        channel, im_size = 3, (32, 32)
+    elif args.dataset.lower() == "fmnist":
+        channel, im_size = 1, (28, 28)
+    else:
+        raise ValueError("Choose dataset from: CIFAR10/CIFAR100/FMNIST")
+                
+    for net_i in range(n_parties):
+        if args.model.lower() == 'resnet18':
+            net = torchvision.models.resnet18(num_classes=num_classes).to(args.device)
+        elif args.model.lower() == 'convnet':
+            net_width, net_depth, net_act, net_norm, net_pooling = 128, 3, 'relu', 'batchnorm', 'avgpooling'
+            net = ConvNet(channel=channel, num_classes=num_classes, net_width=net_width, net_depth=net_depth, net_act=net_act, net_norm='batchnorm', net_pooling=net_pooling, im_size=im_size)
+            net.to(args.device)
+        nets[net_i] = net    
+
+    # if args.dataset in {'mnist', 'cifar10', 'svhn', 'fmnist'}:
+    #     n_classes = 10
+    # elif args.dataset == 'celeba':
+    #     n_classes = 2
+    # elif args.dataset == 'cifar100':
+    #     n_classes = 100
+    # elif args.dataset == 'tinyimagenet':
+    #     n_classes = 200
+    # elif args.dataset == 'femnist':
+    #     n_classes = 62
+    # elif args.dataset == 'emnist':
+    #     n_classes = 47
+    # elif args.dataset in {'a9a', 'covtype', 'rcv1', 'SUSY'}:
+    #     n_classes = 2
+    # if args.use_projection_head:
+    #     add = ""
+    #     if "mnist" in args.dataset and args.model == "simple-cnn":
+    #         add = "-mnist"
+    #     for net_i in range(n_parties):
+    #         net = ModelFedCon(args.model+add, args.out_dim, n_classes, net_configs)
+    #         nets[net_i] = net
+    # else:
+    #     if args.alg == 'moon':
+    #         add = ""
+    #         if "mnist" in args.dataset and args.model == "simple-cnn":
+    #             add = "-mnist"
+    #         for net_i in range(n_parties):
+    #             net = ModelFedCon_noheader(args.model+add, args.out_dim, n_classes, net_configs)
+    #             nets[net_i] = net
+    #     else:
+    #         for net_i in range(n_parties):
+    #             if args.dataset == "generated":
+    #                 net = PerceptronModel()
+    #             elif args.model == "mlp":
+    #                 if args.dataset == 'covtype':
+    #                     input_size = 54
+    #                     output_size = 2
+    #                     hidden_sizes = [32,16,8]
+    #                 elif args.dataset == 'a9a':
+    #                     input_size = 123
+    #                     output_size = 2
+    #                     hidden_sizes = [32,16,8]
+    #                 elif args.dataset == 'rcv1':
+    #                     input_size = 47236
+    #                     output_size = 2
+    #                     hidden_sizes = [32,16,8]
+    #                 elif args.dataset == 'SUSY':
+    #                     input_size = 18
+    #                     output_size = 2
+    #                     hidden_sizes = [16,8]
+    #                 net = FcNet(input_size, hidden_sizes, output_size, dropout_p)
+    #             elif args.model == "vgg":
+    #                 net = vgg11()
+    #             elif args.model == "simple-cnn":
+    #                 if args.dataset in ("cifar10", "cinic10", "svhn"):
+    #                     net = SimpleCNN(input_dim=(16 * 5 * 5), hidden_dims=[120, 84], output_dim=10)
+    #                 elif args.dataset in ("mnist", 'femnist', 'fmnist'):
+    #                     net = SimpleCNNMNIST(input_dim=(16 * 4 * 4), hidden_dims=[120, 84], output_dim=10)
+    #                 elif args.dataset == 'celeba':
+    #                     net = SimpleCNN(input_dim=(16 * 5 * 5), hidden_dims=[120, 84], output_dim=2)
+    #             elif args.model == "vgg-9":
+    #                 if args.dataset in ("mnist", 'femnist'):
+    #                     net = ModerateCNNMNIST()
+    #                 elif args.dataset in ("cifar10", "cinic10", "svhn"):
+    #                     # print("in moderate cnn")
+    #                     net = ModerateCNN()
+    #                 elif args.dataset == 'celeba':
+    #                     net = ModerateCNN(output_dim=2)
+    #             elif args.model == "resnet":
+    #                 net = ResNet50_cifar10()
+    #             elif args.model == "vgg16":
+    #                 net = vgg16()
+    #             else:
+    #                 print("not supported yet")
+    #                 exit(1)
+    #             nets[net_i] = net
 
     model_meta_data = []
     layer_type = []
@@ -457,8 +480,7 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
         optimizer = optim.Adam(filter(lambda p: p.requires_grad, net.parameters()), lr=lr, weight_decay=args.reg,
                                amsgrad=True)
     elif args_optimizer == 'sgd':
-        optimizer = optim.SGD(filter(lambda p: p.requires_grad, net.parameters()), lr=lr, momentum=0.9,
-                              weight_decay=args.reg)
+        optimizer = optim.SGD(filter(lambda p: p.requires_grad, net.parameters()), lr=lr, momentum=0.9, weight_decay=args.reg)
 
     criterion = nn.CrossEntropyLoss().to(device)
     # global_net.to(device)
@@ -490,8 +512,8 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
             target.requires_grad = False
             target = target.long()
 
-            _, pro1, out = net(x)
-            _, pro2, _ = global_net(x)
+            pro1, out = net(x)
+            pro2, _ = global_net(x)
             if args.loss == 'l2norm':
                 loss2 = mu * torch.mean(torch.norm(pro2-pro1, dim=1))
 
@@ -501,7 +523,7 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
 
                 for previous_net in previous_nets:
                     previous_net.to(device)
-                    _, pro3, _ = previous_net(x)
+                    pro3, _ = previous_net(x)
                     nega = cos(pro1, pro3)
                     logits = torch.cat((logits, nega.reshape(-1,1)), dim=1)
 
