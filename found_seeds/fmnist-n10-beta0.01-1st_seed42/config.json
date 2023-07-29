@@ -1,0 +1,15 @@
+{
+    "dataset": "fmnist",
+    "data_path": "data",
+    "data_partition": "dirichlet",
+    "beta": 0.01,
+    "num_exp_try": 60,
+    "num_exp_min": 10,
+    "seed": 42,
+    "num_clients": 10,
+    "save_root": "./found_seeds",
+    "device": "cpu",
+    "save_path": "./found_seeds/fmnist-n10-beta0.01-1st_seed42",
+    "config_path": "./found_seeds/fmnist-n10-beta0.01-1st_seed42/config.json",
+    "logger_path": "./found_seeds/fmnist-n10-beta0.01-1st_seed42/exp_log.log"
+}

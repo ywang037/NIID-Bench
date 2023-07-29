@@ -1,0 +1,14 @@
+{
+    "dataset": "cifar10",
+    "data_path": "data",
+    "data_partition": "dirichlet",
+    "beta": 0.1,
+    "num_exp": 60,
+    "seed": 0,
+    "num_clients": 10,
+    "save_root": "./result/found_seeds",
+    "device": "cpu",
+    "save_path": "./result/found_seeds/cifar10-n10-beta0.1-1st_seed0",
+    "config_path": "./result/found_seeds/cifar10-n10-beta0.1-1st_seed0/config.json",
+    "logger_path": "./result/found_seeds/cifar10-n10-beta0.1-1st_seed0/exp_log.log"
+}

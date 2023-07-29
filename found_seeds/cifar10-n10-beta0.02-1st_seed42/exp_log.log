@@ -1,0 +1,68 @@
+[07-18 14:22] INFO: Dataset selected: CIFAR10
+[07-18 14:22] INFO: >> Trying seed 42
+[07-18 14:22] INFO: Client dataset partitioning completed
+[07-18 14:22] INFO: Client  0 total train data:  7458, distribution: {4: 1006, 6: 1714, 7: 4738}
+[07-18 14:22] INFO: Client  1 total train data:  9728, distribution: {0: 8, 3: 4731, 9: 4989}
+[07-18 14:22] INFO: Client  2 total train data:  3480, distribution: {5: 3480}
+[07-18 14:22] INFO: Client  3 total train data:  3296, distribution: {4: 1, 6: 3285, 9: 10}
+[07-18 14:22] INFO: Client  4 total train data:  3992, distribution: {4: 3992}
+[07-18 14:22] INFO: Client  5 total train data:  4542, distribution: {2: 4143, 3: 138, 7: 261}
+[07-18 14:22] INFO: Client  6 total train data:  5847, distribution: {0: 4991, 2: 856}
+[07-18 14:22] INFO: Client  7 total train data:  5000, distribution: {1: 4999, 2: 1}
+[07-18 14:22] INFO: Client  8 total train data:   143, distribution: {3: 131, 4: 1, 5: 8, 6: 1, 7: 1, 9: 1}
+[07-18 14:22] INFO: Client  9 total train data:  6514, distribution: {0: 1, 1: 1, 5: 1512, 8: 5000}
+[07-18 14:22] INFO: >> Trying seed 43
+[07-18 14:22] INFO: Client dataset partitioning completed
+[07-18 14:22] INFO: Client  0 total train data:  4886, distribution: {1: 149, 2: 4737}
+[07-18 14:22] INFO: Client  1 total train data:    37, distribution: {2: 37}
+[07-18 14:22] INFO: Client  2 total train data:  8676, distribution: {5: 3677, 6: 4999}
+[07-18 14:22] INFO: Client  3 total train data:  5224, distribution: {2: 225, 8: 4999}
+[07-18 14:22] INFO: Client  4 total train data:  5014, distribution: {4: 49, 7: 8, 8: 1, 9: 4956}
+[07-18 14:22] INFO: Client  5 total train data:  6273, distribution: {4: 4951, 5: 1322}
+[07-18 14:22] INFO: Client  6 total train data:    45, distribution: {6: 1, 9: 44}
+[07-18 14:22] INFO: Client  7 total train data:  5000, distribution: {0: 5000}
+[07-18 14:22] INFO: Client  8 total train data:  9429, distribution: {1: 4851, 3: 4578}
+[07-18 14:22] INFO: Client  9 total train data:  5416, distribution: {2: 1, 3: 422, 5: 1, 7: 4992}
+[07-18 14:22] INFO: >> Trying seed 44
+[07-18 14:23] INFO: >> Trying seed 45
+[07-18 14:23] INFO: Client dataset partitioning completed
+[07-18 14:23] INFO: Client  0 total train data:  6827, distribution: {0: 1900, 8: 1, 9: 4926}
+[07-18 14:23] INFO: Client  1 total train data:  5000, distribution: {4: 1, 7: 4999}
+[07-18 14:23] INFO: Client  2 total train data:  4710, distribution: {4: 4636, 9: 74}
+[07-18 14:23] INFO: Client  3 total train data:  5013, distribution: {1: 12, 4: 362, 5: 3971, 6: 668}
+[07-18 14:23] INFO: Client  4 total train data:  4956, distribution: {1: 4951, 2: 5}
+[07-18 14:23] INFO: Client  5 total train data:  5362, distribution: {0: 2, 5: 1029, 6: 4331}
+[07-18 14:23] INFO: Client  6 total train data:  7436, distribution: {0: 2253, 2: 183, 3: 5000}
+[07-18 14:23] INFO: Client  7 total train data:  5005, distribution: {1: 36, 8: 4969}
+[07-18 14:23] INFO: Client  8 total train data:  5658, distribution: {0: 845, 1: 1, 2: 4812}
+[07-18 14:23] INFO: Client  9 total train data:    33, distribution: {4: 1, 6: 1, 7: 1, 8: 30}
+[07-18 14:23] INFO: >> Trying seed 46
+[07-18 14:24] INFO: >> Trying seed 47
+[07-18 14:25] INFO: >> Trying seed 48
+[07-18 14:25] INFO: Client dataset partitioning completed
+[07-18 14:25] INFO: Client  0 total train data:  5019, distribution: {3: 4880, 4: 139}
+[07-18 14:25] INFO: Client  1 total train data:  6683, distribution: {2: 1704, 7: 4979}
+[07-18 14:25] INFO: Client  2 total train data:  3818, distribution: {0: 61, 1: 104, 6: 3651, 7: 2}
+[07-18 14:25] INFO: Client  3 total train data:  9833, distribution: {0: 4938, 1: 4895}
+[07-18 14:25] INFO: Client  4 total train data:  5006, distribution: {5: 4999, 7: 7}
+[07-18 14:25] INFO: Client  5 total train data:  4921, distribution: {1: 1, 8: 4919, 9: 1}
+[07-18 14:25] INFO: Client  6 total train data:  6308, distribution: {3: 119, 4: 4842, 5: 1, 6: 1346}
+[07-18 14:25] INFO: Client  7 total train data:  3316, distribution: {2: 3234, 3: 1, 7: 1, 8: 80}
+[07-18 14:25] INFO: Client  8 total train data:    63, distribution: {2: 61, 6: 2}
+[07-18 14:25] INFO: Client  9 total train data:  5033, distribution: {0: 1, 2: 1, 4: 19, 6: 1, 7: 11, 8: 1, 9: 4999}
+[07-18 14:25] INFO: >> Trying seed 49
+[07-18 14:26] INFO: >> Trying seed 50
+[07-18 14:26] INFO: Client dataset partitioning completed
+[07-18 14:26] INFO: Client  0 total train data:  4999, distribution: {9: 4999}
+[07-18 14:26] INFO: Client  1 total train data:  1281, distribution: {1: 1279, 2: 2}
+[07-18 14:26] INFO: Client  2 total train data:  7031, distribution: {2: 2605, 3: 4426}
+[07-18 14:26] INFO: Client  3 total train data:  9927, distribution: {5: 4999, 7: 4928}
+[07-18 14:26] INFO: Client  4 total train data:  5675, distribution: {2: 2392, 3: 560, 6: 2723}
+[07-18 14:26] INFO: Client  5 total train data:  2263, distribution: {1: 2190, 5: 1, 7: 72}
+[07-18 14:26] INFO: Client  6 total train data:  5034, distribution: {6: 35, 8: 4999}
+[07-18 14:26] INFO: Client  7 total train data:  6529, distribution: {0: 4999, 1: 1530}
+[07-18 14:26] INFO: Client  8 total train data:  2258, distribution: {3: 14, 6: 2242, 8: 1, 9: 1}
+[07-18 14:26] INFO: Client  9 total train data:  5003, distribution: {0: 1, 1: 1, 2: 1, 4: 5000}
+[07-18 14:26] INFO: >> The succesful seeds for cifar10 with 10 and beta-0.02 are: [42, 43, 45, 48, 50]
+[07-18 14:26] INFO: -------------------------
+Session: completed at 2023-07-18 14:26:03, time elapsed: 4 mins. That's all folks.

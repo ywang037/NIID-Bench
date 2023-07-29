@@ -1,0 +1,130 @@
+[07-24 00:08] INFO: Dataset selected: FMNIST
+[07-24 00:08] INFO: >> Trying seed 42
+[07-24 00:09] INFO: >> Trying seed 43
+[07-24 00:10] INFO: >> Trying seed 44
+[07-24 00:12] INFO: >> Trying seed 45
+[07-24 00:13] INFO: >> Trying seed 46
+[07-24 00:14] INFO: >> Trying seed 47
+[07-24 00:15] INFO: >> Trying seed 48
+[07-24 00:16] INFO: >> Trying seed 49
+[07-24 00:17] INFO: >> Trying seed 50
+[07-24 00:18] INFO: >> Trying seed 51
+[07-24 00:19] INFO: >> Trying seed 52
+[07-24 00:20] INFO: >> Trying seed 53
+[07-24 00:21] INFO: >> Trying seed 54
+[07-24 00:22] INFO: >> Trying seed 55
+[07-24 00:23] INFO: >> Trying seed 56
+[07-24 00:23] INFO: Client dataset partitioning completed
+[07-24 00:23] INFO: Client  0 total train data:  5999, distribution: {0: 5999}
+[07-24 00:23] INFO: Client  1 total train data: 11445, distribution: {4: 5446, 5: 5999}
+[07-24 00:23] INFO: Client  2 total train data:  5621, distribution: {3: 5621}
+[07-24 00:23] INFO: Client  3 total train data:   378, distribution: {3: 378}
+[07-24 00:23] INFO: Client  4 total train data:  5987, distribution: {1: 5986, 3: 1}
+[07-24 00:23] INFO: Client  5 total train data:  6552, distribution: {2: 5999, 4: 553}
+[07-24 00:23] INFO: Client  6 total train data:    17, distribution: {2: 1, 6: 16}
+[07-24 00:23] INFO: Client  7 total train data:  6016, distribution: {1: 14, 4: 1, 5: 1, 9: 6000}
+[07-24 00:23] INFO: Client  8 total train data:  6001, distribution: {0: 1, 8: 6000}
+[07-24 00:23] INFO: Client  9 total train data: 11984, distribution: {6: 5984, 7: 6000}
+[07-24 00:23] INFO: >> Trying seed 57
+[07-24 00:24] INFO: >> Trying seed 58
+[07-24 00:25] INFO: >> Trying seed 59
+[07-24 00:26] INFO: >> Trying seed 60
+[07-24 00:27] INFO: >> Trying seed 61
+[07-24 00:27] INFO: Client dataset partitioning completed
+[07-24 00:27] INFO: Client  0 total train data: 11763, distribution: {2: 5764, 3: 5999}
+[07-24 00:27] INFO: Client  1 total train data:  1235, distribution: {0: 34, 6: 1201}
+[07-24 00:27] INFO: Client  2 total train data:  6149, distribution: {0: 5913, 2: 236}
+[07-24 00:27] INFO: Client  3 total train data:  6000, distribution: {9: 6000}
+[07-24 00:27] INFO: Client  4 total train data:  7334, distribution: {1: 5955, 4: 1379}
+[07-24 00:27] INFO: Client  5 total train data:  6095, distribution: {0: 52, 1: 44, 7: 5999}
+[07-24 00:27] INFO: Client  6 total train data:  6001, distribution: {3: 1, 7: 1, 8: 5999}
+[07-24 00:27] INFO: Client  7 total train data:  9346, distribution: {4: 4547, 6: 4799}
+[07-24 00:27] INFO: Client  8 total train data:    74, distribution: {4: 74}
+[07-24 00:27] INFO: Client  9 total train data:  6003, distribution: {0: 1, 1: 1, 5: 6000, 8: 1}
+[07-24 00:27] INFO: >> Trying seed 62
+[07-24 00:27] INFO: Client dataset partitioning completed
+[07-24 00:27] INFO: Client  0 total train data:  7977, distribution: {2: 1, 5: 2048, 7: 5928}
+[07-24 00:27] INFO: Client  1 total train data:  6665, distribution: {1: 515, 5: 145, 7: 35, 8: 5970}
+[07-24 00:27] INFO: Client  2 total train data:  8658, distribution: {1: 5483, 4: 3175}
+[07-24 00:27] INFO: Client  3 total train data:  5819, distribution: {3: 62, 7: 36, 9: 5721}
+[07-24 00:27] INFO: Client  4 total train data:  4015, distribution: {5: 3787, 9: 228}
+[07-24 00:27] INFO: Client  5 total train data:  2875, distribution: {4: 2824, 9: 51}
+[07-24 00:27] INFO: Client  6 total train data:  6001, distribution: {0: 5999, 1: 2}
+[07-24 00:27] INFO: Client  7 total train data: 11939, distribution: {0: 1, 3: 5937, 4: 1, 6: 6000}
+[07-24 00:27] INFO: Client  8 total train data:    50, distribution: {5: 20, 8: 30}
+[07-24 00:27] INFO: Client  9 total train data:  6001, distribution: {2: 5999, 3: 1, 7: 1}
+[07-24 00:27] INFO: >> Trying seed 63
+[07-24 00:28] INFO: >> Trying seed 64
+[07-24 00:29] INFO: >> Trying seed 65
+[07-24 00:30] INFO: >> Trying seed 66
+[07-24 00:31] INFO: >> Trying seed 67
+[07-24 00:32] INFO: >> Trying seed 68
+[07-24 00:33] INFO: >> Trying seed 69
+[07-24 00:34] INFO: >> Trying seed 70
+[07-24 00:35] INFO: >> Trying seed 71
+[07-24 00:36] INFO: >> Trying seed 72
+[07-24 00:37] INFO: >> Trying seed 73
+[07-24 00:37] INFO: Client dataset partitioning completed
+[07-24 00:37] INFO: Client  0 total train data:  5731, distribution: {2: 2, 9: 5729}
+[07-24 00:37] INFO: Client  1 total train data:  5850, distribution: {3: 9, 7: 5841}
+[07-24 00:37] INFO: Client  2 total train data:   270, distribution: {9: 270}
+[07-24 00:37] INFO: Client  3 total train data:  6157, distribution: {1: 5999, 7: 158}
+[07-24 00:37] INFO: Client  4 total train data:  6001, distribution: {1: 1, 8: 6000}
+[07-24 00:37] INFO: Client  5 total train data:  6000, distribution: {6: 6000}
+[07-24 00:37] INFO: Client  6 total train data:  6000, distribution: {4: 6000}
+[07-24 00:37] INFO: Client  7 total train data: 11991, distribution: {3: 5991, 5: 6000}
+[07-24 00:37] INFO: Client  8 total train data:  5999, distribution: {2: 5998, 9: 1}
+[07-24 00:37] INFO: Client  9 total train data:  6001, distribution: {0: 6000, 7: 1}
+[07-24 00:37] INFO: >> Trying seed 74
+[07-24 00:38] INFO: >> Trying seed 75
+[07-24 00:39] INFO: >> Trying seed 76
+[07-24 00:40] INFO: >> Trying seed 77
+[07-24 00:42] INFO: >> Trying seed 78
+[07-24 00:43] INFO: >> Trying seed 79
+[07-24 00:44] INFO: >> Trying seed 80
+[07-24 00:45] INFO: >> Trying seed 81
+[07-24 00:46] INFO: >> Trying seed 82
+[07-24 00:47] INFO: >> Trying seed 83
+[07-24 01:01] INFO: >> Trying seed 84
+[07-24 01:02] INFO: >> Trying seed 85
+[07-24 01:03] INFO: >> Trying seed 86
+[07-24 01:04] INFO: >> Trying seed 87
+[07-24 01:05] INFO: >> Trying seed 88
+[07-24 01:06] INFO: >> Trying seed 89
+[07-24 01:07] INFO: >> Trying seed 90
+[07-24 01:08] INFO: >> Trying seed 91
+[07-24 01:09] INFO: >> Trying seed 92
+[07-24 01:09] INFO: Client dataset partitioning completed
+[07-24 01:09] INFO: Client  0 total train data: 10454, distribution: {0: 5815, 1: 4639}
+[07-24 01:09] INFO: Client  1 total train data:  9482, distribution: {2: 5878, 4: 3604}
+[07-24 01:09] INFO: Client  2 total train data:  7280, distribution: {1: 1276, 6: 4, 9: 6000}
+[07-24 01:09] INFO: Client  3 total train data:   188, distribution: {5: 187, 7: 1}
+[07-24 01:09] INFO: Client  4 total train data:  5999, distribution: {8: 5999}
+[07-24 01:09] INFO: Client  5 total train data:  5995, distribution: {6: 5995}
+[07-24 01:09] INFO: Client  6 total train data:  3144, distribution: {1: 83, 2: 121, 3: 2932, 5: 8}
+[07-24 01:09] INFO: Client  7 total train data:  9067, distribution: {3: 3068, 7: 5999}
+[07-24 01:09] INFO: Client  8 total train data:  5807, distribution: {2: 1, 5: 5805, 6: 1}
+[07-24 01:09] INFO: Client  9 total train data:  2584, distribution: {0: 185, 1: 2, 4: 2396, 8: 1}
+[07-24 01:09] INFO: >> Trying seed 93
+[07-24 01:10] INFO: >> Trying seed 94
+[07-24 01:11] INFO: >> Trying seed 95
+[07-24 01:12] INFO: >> Trying seed 96
+[07-24 01:13] INFO: >> Trying seed 97
+[07-24 01:13] INFO: Client dataset partitioning completed
+[07-24 01:13] INFO: Client  0 total train data:  3944, distribution: {9: 3944}
+[07-24 01:13] INFO: Client  1 total train data:  7182, distribution: {5: 5999, 6: 1183}
+[07-24 01:13] INFO: Client  2 total train data: 11989, distribution: {4: 5989, 7: 6000}
+[07-24 01:13] INFO: Client  3 total train data:  6000, distribution: {0: 6000}
+[07-24 01:13] INFO: Client  4 total train data:  6009, distribution: {3: 5999, 6: 10}
+[07-24 01:13] INFO: Client  5 total train data:  4807, distribution: {6: 4807}
+[07-24 01:13] INFO: Client  6 total train data:  2066, distribution: {4: 10, 5: 1, 9: 2055}
+[07-24 01:13] INFO: Client  7 total train data:  6103, distribution: {1: 5991, 2: 112}
+[07-24 01:13] INFO: Client  8 total train data:  5897, distribution: {1: 8, 2: 5888, 3: 1}
+[07-24 01:13] INFO: Client  9 total train data:  6003, distribution: {1: 1, 4: 1, 8: 6000, 9: 1}
+[07-24 01:13] INFO: >> Trying seed 98
+[07-24 01:14] INFO: >> Trying seed 99
+[07-24 01:15] INFO: >> Trying seed 100
+[07-24 01:16] INFO: >> Trying seed 101
+[07-24 01:17] INFO: >> The succesful seeds for fmnist with 10 and beta-0.01 are: [56, 61, 62, 73, 92, 97]
+[07-24 01:17] INFO: -------------------------
+Session: completed at 2023-07-24 01:17:47, time elapsed: 69 mins. That's all folks.
