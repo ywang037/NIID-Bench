@@ -815,6 +815,7 @@ if __name__ == '__main__':
         argument_path='experiment_arguments-%s.json' % datetime.datetime.now().strftime("%Y-%m-%d-%H:%M-%S")
     else:
         argument_path=args.log_file_name+'.json'
+    
     with open(os.path.join(args.logdir, argument_path), 'w') as f:
         json.dump(str(args), f)
     device = torch.device(args.device)

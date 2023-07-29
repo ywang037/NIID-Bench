@@ -395,17 +395,29 @@ if __name__ == '__main__':
     os.makedirs(args.logdir)
 
     if args.log_file_name is None:
-        argument_path= f'experiment_log-{start_timestamp}'
+        argument_path= f'experiment_log-{start_timestamp}.json'
     else:
         argument_path=args.log_file_name+'.json'
+    
     with open(os.path.join(args.logdir, argument_path), 'w') as f:
         json.dump(str(args), f)
     device = torch.device(args.device)
+    for handler in logging.root.handlers[:]:
+        logging.root.removeHandler(handler)
 
     if args.log_file_name is None:
         args.log_file_name = f'experiment_log-{start_timestamp}'
     log_path=args.log_file_name+'.log'
-    logger = get_logger(logger_path=os.path.join(args.logdir, log_path))
+    # logger = get_logger(logger_path=os.path.join(args.logdir, log_path))
+    logging.basicConfig(
+        filename=os.path.join(args.logdir, log_path),
+        # filename='/home/qinbin/test.log',
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        datefmt='%m-%d %H:%M', level=logging.DEBUG, filemode='w')
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+    logger.info(device)
 
     seed = args.init_seed
     logger.info("#" * 100)
