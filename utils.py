@@ -33,6 +33,7 @@ import matplotlib.pyplot as plt
 import datetime
 import csv
 from torchvision import datasets
+from torch.utils.data import Subset
 
 logging.basicConfig()
 logger = logging.getLogger()
@@ -1150,3 +1151,34 @@ def record_net_data_stats(y_train, net_dataidx_map, logger=None):
             net_cls_counts[unq[i]] = unq_cnt[i]
            
     return net_cls_counts
+
+def get_dataloader2(trainset, testset, train_bs, test_bs, dataidxs=None, transform=None):
+    """ used for benchmark algorithms
+    """
+    if dataidxs is not None:
+        # split for clients local train and test dataset
+        train_ds = CustomSubset(dataset=trainset, indices=dataidxs, subset_transform=transform)
+        test_ds = CustomSubset(dataset=testset, indices=dataidxs, subset_transform=transform)
+    else:
+        # using pooled centralized dataset
+        train_ds = trainset
+        test_ds = testset
+
+    train_dl = DataLoader(dataset=train_ds, batch_size=train_bs, shuffle=True, drop_last=False)
+    test_dl = DataLoader(dataset=test_ds, batch_size=test_bs, shuffle=False, drop_last=False)
+
+    return train_dl, test_dl, train_ds, test_ds
+
+class CustomSubset(Subset):
+    '''A custom subset class with customizable data transformation'''
+    def __init__(self, dataset, indices, subset_transform=None):
+        super().__init__(dataset, indices)
+        self.subset_transform = subset_transform
+        
+    def __getitem__(self, idx):
+        x, y = self.dataset[self.indices[idx]]
+        
+        if self.subset_transform:
+            x = self.subset_transform(x)
+      
+        return x, y 
