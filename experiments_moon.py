@@ -416,7 +416,7 @@ if __name__ == '__main__':
         datefmt='%m-%d %H:%M', level=logging.DEBUG, filemode='w')
 
     logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
     logger.info(device)
 
     print(f"Starting experiment run with seed {args.init_seed:2d}")
