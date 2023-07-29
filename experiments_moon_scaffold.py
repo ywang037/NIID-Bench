@@ -378,7 +378,7 @@ def local_train_net_moon(nets, selected, args, train_dl_local, test_dl=None, glo
         # trainacc, testacc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local, test_dl, n_epoch, args.lr,
         #                                       args.optimizer, args.mu, args.temperature, args, round, device=device)
         # logger.info("net %d final test acc %f" % (net_id, testacc))
-        _, loc_test_acc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local[i], test_dl, args.n_epoch, args.lr, args.optimizer, args.mu, args.temperature, args, round, device=device)
+        _, loc_test_acc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local[net_id], test_dl, args.n_epoch, args.lr, args.optimizer, args.mu, args.temperature, args, round, device=device)
         avg_acc += loc_test_acc
 
     avg_acc /= len(selected)
@@ -446,7 +446,7 @@ if __name__ == '__main__':
         party_train_dl, party_test_dl, _, _ = get_dataloader2(data_set['train_data'], data_set['test_data'], args.batch_size, 2*args.batch_size, dataidxs)
         train_dl_loc.append(party_train_dl)
 
-    glob_loss, glob_acc = [], [], [], [] 
+    glob_loss, glob_acc = [], []
 
     if args.alg == 'scaffold':
         logger.info("Initializing nets")
