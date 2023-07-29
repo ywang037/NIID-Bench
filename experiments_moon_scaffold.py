@@ -54,6 +54,7 @@ def get_args():
     parser.add_argument('--noise_type', type=str, default='level', help='Different level of noise or different space of noise')
     parser.add_argument('--rho', type=float, default=0, help='Parameter controlling the momentum SGD')
     parser.add_argument('--sample', type=float, default=1, help='Sample ratio for each communication round')
+    parser.add_argument('--rootdir', type=str, required=False, default="./result/bench/", help='root log directory path')
     args = parser.parse_args()
     return args
 
