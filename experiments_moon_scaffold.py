@@ -113,40 +113,32 @@ def train_net_scaffold(net_id, net, global_model, c_local, c_global, train_datal
     criterion = nn.CrossEntropyLoss().to(device)
 
     cnt = 0
-    if type(train_dataloader) == type([1]):
-        pass
-    else:
-        train_dataloader = [train_dataloader]
-
-    #writer = SummaryWriter()
 
     c_global_para = c_global.state_dict()
     c_local_para = c_local.state_dict()
 
     for epoch in range(epochs):
         epoch_loss_collector = []
-        for tmp in train_dataloader:
-            for batch_idx, (x, target) in enumerate(tmp):
-                x, target = x.to(device), target.to(device)
+        for x, target in train_dataloader:
+            x, target = x.to(device), target.to(device)
+            optimizer.zero_grad()
+            x.requires_grad = True
+            target.requires_grad = False
+            target = target.long()
 
-                optimizer.zero_grad()
-                x.requires_grad = True
-                target.requires_grad = False
-                target = target.long()
+            _, out = net(x)
+            loss = criterion(out, target)
 
-                _, out = net(x)
-                loss = criterion(out, target)
+            loss.backward()
+            optimizer.step()
 
-                loss.backward()
-                optimizer.step()
+            net_para = net.state_dict()
+            for key in net_para:
+                net_para[key] = net_para[key] - args.lr * (c_global_para[key] - c_local_para[key])
+            net.load_state_dict(net_para)
 
-                net_para = net.state_dict()
-                for key in net_para:
-                    net_para[key] = net_para[key] - args.lr * (c_global_para[key] - c_local_para[key])
-                net.load_state_dict(net_para)
-
-                cnt += 1
-                epoch_loss_collector.append(loss.item())
+            cnt += 1
+            epoch_loss_collector.append(loss.item())
 
 
         epoch_loss = sum(epoch_loss_collector) / len(epoch_loss_collector)
@@ -216,7 +208,7 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
         epoch_loss_collector = []
         epoch_loss1_collector = []
         epoch_loss2_collector = []
-        for batch_idx, (x, target) in enumerate(train_dataloader):
+        for x, target in train_dataloader:
             x, target = x.to(device), target.to(device)
 
             optimizer.zero_grad()
