@@ -1,7 +1,7 @@
-for alg in scaffold
+for alg in scaffold moon
 do
 	python experiments.py \
-		--model=simple-cnn \
+		--model=convnet \
 		--dataset=cifar10 \
 		--alg=$alg \
 		--lr=0.01 \
@@ -16,5 +16,5 @@ do
 		--datadir='./data/' \
 		--logdir='./logs/' \
 		--noise=0 \
-		--init_seed=0
+		--init_seed=42
 done
