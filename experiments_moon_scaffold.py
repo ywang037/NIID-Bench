@@ -527,7 +527,7 @@ if __name__ == '__main__':
                 best_glob_acc = acc
 
             logger.info(f'>> Global model test loss: {loss:.4f}')
-            logger.info(f'>> Global model test accuracy: {acc:.4f}, historical best acc: {best_glob_acc:.4f}')
+            logger.info(f'>> Global model test accuracy: {acc*100:.2f}, historical best acc: {best_glob_acc:.4f}')
 
 
     elif args.alg == 'moon':
@@ -611,7 +611,7 @@ if __name__ == '__main__':
                 best_glob_acc = acc
 
             logger.info(f'>> Global model test loss: {loss:.4f}'.format(loss))
-            logger.info(f'>> Global model test accuracy: {acc:.4f}, historical best acc: {best_glob_acc:.4f}')
+            logger.info(f'>> Global model test accuracy: {acc*100:.2f}, historical best acc: {best_glob_acc:.4f}')
 
     print(f"Experiment completed at {datetime.datetime.now()}, saving results...")
     glob_loss, glob_acc = np.array(glob_loss), np.array(glob_acc)
