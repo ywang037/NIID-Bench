@@ -861,7 +861,7 @@ def noise_sample(choice, n_dis_c, dis_c_dim, n_con_c, n_z, batch_size, device):
 def evaluation(args, net, eval_loader):
     ''' Use this function to evalute the loss and accuracy of a model
     '''
-
+    net.to(args.degice)
     net.eval()
     criterion = nn.CrossEntropyLoss(reduction='sum').to(args.device)
     correct, loss = 0, 0.0
