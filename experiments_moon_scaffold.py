@@ -285,7 +285,7 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
 
 
 
-def local_train_net_scaffold(nets, selected, global_model, c_nets, c_global, args, net_dataidx_map, test_dl = None, device="cpu"):
+def local_train_net_scaffold(nets, selected, global_model, c_nets, c_global, args, train_dl_local, test_dl = None, device="cpu"):
     avg_acc = 0.0
 
     total_delta = copy.deepcopy(global_model.state_dict())
@@ -296,28 +296,28 @@ def local_train_net_scaffold(nets, selected, global_model, c_nets, c_global, arg
     for net_id, net in nets.items():
         if net_id not in selected:
             continue
-        dataidxs = net_dataidx_map[net_id]
-
-        logger.info("Training network %s. n_training: %d" % (str(net_id), len(dataidxs)))
+        logger.info(f'Training network for client {net_id:2d}')
+        # dataidxs = net_dataidx_map[net_id]
+        # logger.info("Training network %s. n_training: %d" % (str(net_id), len(dataidxs)))
+        
         # move the model to cuda device:
         net.to(device)
-
         c_nets[net_id].to(device)
 
-        noise_level = args.noise
-        if net_id == args.n_parties - 1:
-            noise_level = 0
+        # noise_level = args.noise
+        # if net_id == args.n_parties - 1:
+        #     noise_level = 0
 
-        if args.noise_type == 'space':
-            train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level, net_id, args.n_parties-1)
-        else:
-            noise_level = args.noise / (args.n_parties - 1) * net_id
-            train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level)
+        # if args.noise_type == 'space':
+        #     train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level, net_id, args.n_parties-1)
+        # else:
+        #     noise_level = args.noise / (args.n_parties - 1) * net_id
+        #     train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level)
         # train_dl_global, test_dl_global, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32)
-        n_epoch = args.epochs
+        # n_epoch = args.epochs
 
 
-        _, loc_test_acc, c_delta_para = train_net_scaffold(net_id, net, global_model, c_nets[net_id], c_global, train_dl_local, test_dl, n_epoch, args.lr, args.optimizer, device=device)
+        _, loc_test_acc, c_delta_para = train_net_scaffold(net_id, net, global_model, c_nets[net_id], c_global, train_dl_local[net_id], test_dl, args.n_epoch, args.lr, args.optimizer, device=device)
 
         c_nets[net_id].to('cpu')
         for key in total_delta:
@@ -347,28 +347,29 @@ def local_train_net_scaffold(nets, selected, global_model, c_nets, c_global, arg
     return nets_list
 
 
-def local_train_net_moon(nets, selected, args, net_dataidx_map, test_dl=None, global_model = None, prev_model_pool = None, round=None, device="cpu"):
+def local_train_net_moon(nets, selected, args, train_dl_local, test_dl=None, global_model = None, prev_model_pool = None, round=None, device="cpu"):
     avg_acc = 0.0
     global_model.to(device)
     for net_id, net in nets.items():
         if net_id not in selected:
             continue
-        dataidxs = net_dataidx_map[net_id]
-
-        logger.info("Training network %s. n_training: %d" % (str(net_id), len(dataidxs)))
+        # dataidxs = net_dataidx_map[net_id]
+        # logger.info("Training network %s. n_training: %d" % (str(net_id), len(dataidxs)))
+        
+        logger.info(f'Training network for client {net_id:2d}')
         net.to(device)
 
-        noise_level = args.noise
-        if net_id == args.n_parties - 1:
-            noise_level = 0
+        # noise_level = args.noise
+        # if net_id == args.n_parties - 1:
+        #     noise_level = 0
 
-        if args.noise_type == 'space':
-            train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level, net_id, args.n_parties-1)
-        else:
-            noise_level = args.noise / (args.n_parties - 1) * net_id
-            train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level)
+        # if args.noise_type == 'space':
+        #     train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level, net_id, args.n_parties-1)
+        # else:
+        #     noise_level = args.noise / (args.n_parties - 1) * net_id
+        #     train_dl_local, test_dl_local, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32, dataidxs, noise_level)
         # train_dl_global, test_dl_global, _, _ = get_dataloader(args.dataset, args.datadir, args.batch_size, 32)
-        n_epoch = args.epochs
+        # n_epoch = args.epochs
 
         prev_models=[]
         for i in range(len(prev_model_pool)):
@@ -376,7 +377,7 @@ def local_train_net_moon(nets, selected, args, net_dataidx_map, test_dl=None, gl
         # trainacc, testacc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local, test_dl, n_epoch, args.lr,
         #                                       args.optimizer, args.mu, args.temperature, args, round, device=device)
         # logger.info("net %d final test acc %f" % (net_id, testacc))
-        _, loc_test_acc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local, test_dl, n_epoch, args.lr, args.optimizer, args.mu, args.temperature, args, round, device=device)
+        _, loc_test_acc = train_net_moon(net_id, net, global_model, prev_models, train_dl_local[i], test_dl, args.n_epoch, args.lr, args.optimizer, args.mu, args.temperature, args, round, device=device)
         avg_acc += loc_test_acc
 
     avg_acc /= len(selected)
@@ -434,14 +435,14 @@ if __name__ == '__main__':
         beta=args.beta
     )
     traindata_cls_counts = record_net_data_stats(data_set['train_labels'], net_dataidx_map, logger)
-    train_dl_global, test_dl_global, _, _ = get_dataloader(data_set['train_data'], data_set['test_data'], args.batch_size, 2*args.batch_size)
+    train_dl_global, test_dl_global, _, _ = get_dataloader2(data_set['train_data'], data_set['test_data'], args.batch_size, 2*args.batch_size)
     
     # make the local trainloder for clients
     train_dl_loc=[]
     for party_id in range(args.n_parties):
         dataidxs = net_dataidx_map[party_id]
         # logger.info(f"Client {party_id:2d} is associated with {len(dataidxs):5f} data")
-        party_train_dl, party_test_dl, _, _ = get_dataloader(data_set['train_data'], data_set['test_data'], args.batch_size, 2*args.batch_size, dataidxs)
+        party_train_dl, party_test_dl, _, _ = get_dataloader2(data_set['train_data'], data_set['test_data'], args.batch_size, 2*args.batch_size, dataidxs)
         train_dl_loc.append(party_train_dl)
 
     glob_loss, glob_acc = [], [], [], [] 
@@ -466,7 +467,7 @@ if __name__ == '__main__':
 
 
         for round in range(args.comm_round):
-            logger.info("in comm round:" + str(round))
+            logger.info("In comm round:" + str(round))
 
             arr = np.arange(args.n_parties)
             np.random.shuffle(arr)
@@ -481,7 +482,7 @@ if __name__ == '__main__':
                 for idx in selected:
                     nets[idx].load_state_dict(global_para)
 
-            local_train_net_scaffold(nets, selected, global_model, c_nets, c_global, args, net_dataidx_map, test_dl = test_dl_global, device=device)
+            local_train_net_scaffold(nets, selected, global_model, c_nets, c_global, args, train_dl_local=train_dl_loc, test_dl = test_dl_global, device=device)
             # local_train_net(nets, args, net_dataidx_map, local_split=False, device=device)
 
             # update global model
@@ -540,7 +541,7 @@ if __name__ == '__main__':
                 param.requires_grad = False
 
         for round in range(args.comm_round):
-            logger.info("in comm round:" + str(round))
+            logger.info("In comm round:" + str(round))
 
             arr = np.arange(args.n_parties)
             np.random.shuffle(arr)
