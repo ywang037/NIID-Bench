@@ -549,7 +549,7 @@ if __name__ == '__main__':
                 for idx in selected:
                     nets[idx].load_state_dict(global_para)
 
-            local_train_net_moon(nets, selected, args, net_dataidx_map, test_dl = test_dl_global, global_model=global_model,
+            local_train_net_moon(nets, selected, args, train_dl_local=train_dl_loc, test_dl = test_dl_global, global_model=global_model,
                                  prev_model_pool=old_nets_pool, round=round, device=device)
             # local_train_net(nets, args, net_dataidx_map, local_split=False, device=device)
 
