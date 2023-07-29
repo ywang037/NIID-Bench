@@ -870,7 +870,7 @@ def evaluation(args, net, eval_loader):
     with torch.no_grad():
         for x, y in eval_loader:
             x, y = x.to(args.device), y.to(args.device)
-            logits = net(x)
+            _, logits = net(x)
             pred = F.log_softmax(logits, dim=1)
             correct += (pred.argmax(dim=1) == y).sum().item()
             loss += criterion(pred,y).item()
