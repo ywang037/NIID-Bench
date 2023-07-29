@@ -394,8 +394,8 @@ if __name__ == '__main__':
 
     # torch.set_printoptions(profile="full")
     args = get_args()
-
-    tag = f"{args.dataset}-{args.model}-{args.alg}-N{args.n_parties}-beta{args.beta}-ep{args.epochs}-lr{args.lr}-round{args.comm_round}"
+    start_timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M-%S")
+    tag = f"{args.dataset}-{args.model}-{args.alg}-N{args.n_parties}-beta{args.beta}-ep{args.epochs}-lr{args.lr}-round{args.comm_round}-{start_timestamp}"
     if args.alg == "moon":
         tag = tag + f"-mu{args.mu}"
     exp_dir = os.path.join(args.rootdir, tag) 
@@ -403,7 +403,7 @@ if __name__ == '__main__':
     os.makedirs(args.logdir)
 
     if args.log_file_name is None:
-        argument_path='experiment_arguments-%s.json' % datetime.datetime.now().strftime("%Y-%m-%d-%H:%M-%S")
+        argument_path= f'experiment_log-{start_timestamp}'
     else:
         argument_path=args.log_file_name+'.json'
     with open(os.path.join(args.logdir, argument_path), 'w') as f:
@@ -411,7 +411,7 @@ if __name__ == '__main__':
     device = torch.device(args.device)
 
     if args.log_file_name is None:
-        args.log_file_name = 'experiment_log-%s' % (datetime.datetime.now().strftime("%Y-%m-%d-%H:%M-%S"))
+        args.log_file_name = f'experiment_log-{start_timestamp}'
     log_path=args.log_file_name+'.log'
     logger = get_logger(logger_path=os.path.join(args.logdir, log_path))
 
