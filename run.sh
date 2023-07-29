@@ -12,7 +12,7 @@ do
 		--comm_round=2 \
 		--partition=noniid-labeldir \
 		--beta=0.5 \
-		--device='cpu' \
+		--device='cuda' \
 		--datadir='./data/' \
 		--logdir='./logs/' \
 		--noise=0 \
