@@ -387,7 +387,7 @@ if __name__ == '__main__':
     # torch.set_printoptions(profile="full")
     args = get_args()
     start_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    tag = f"{args.dataset}-{args.model}-{args.alg}-N{args.n_parties}-beta{args.beta}-ep{args.epochs}-lr{args.lr}-round{args.comm_round}-{start_timestamp}"
+    tag = f"{args.dataset}-{args.model}-{args.alg}-N{args.n_parties}-beta{args.beta}-ep{args.epochs}-lr{args.lr}-round{args.comm_round}"
     if args.alg == "moon":
         tag = tag + f"-mu{args.mu}"
     exp_dir = os.path.join(args.rootdir, tag) 
