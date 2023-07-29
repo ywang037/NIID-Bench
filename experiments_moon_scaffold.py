@@ -386,7 +386,7 @@ if __name__ == '__main__':
 
     # torch.set_printoptions(profile="full")
     args = get_args()
-    start_timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H:%M-%S")
+    start_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     tag = f"{args.dataset}-{args.model}-{args.alg}-N{args.n_parties}-beta{args.beta}-ep{args.epochs}-lr{args.lr}-round{args.comm_round}-{start_timestamp}"
     if args.alg == "moon":
         tag = tag + f"-mu{args.mu}"
@@ -613,7 +613,8 @@ if __name__ == '__main__':
             logger.info(f'>> Global model test loss: {loss:.4f}'.format(loss))
             logger.info(f'>> Global model test accuracy: {acc*100:.2f}, historical best acc: {best_glob_acc:.4f}')
 
-    print(f"Experiment completed at {datetime.datetime.now()}, saving results...")
+    end_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print(f"Experiment completed at {end_timestamp}, saving results...")
     glob_loss, glob_acc = np.array(glob_loss), np.array(glob_acc)
     # plot and save test loss curves
     plot_series(
