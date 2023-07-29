@@ -164,8 +164,8 @@ def train_net_scaffold(net_id, net, global_model, c_local, c_global, train_datal
     # return train_acc, test_acc, c_delta_para
 
     test_acc, test_loss = evaluation(args, net, test_dataloader)
-    logger.info('>> Client {:2d} Test loss: {:.4f}'.format(net_id, loss))
-    logger.info('>> Client {:2d} Test acc: {:.2f}%'.format(net_id, acc*100))
+    logger.info(f'>> Client {net_id:2d} Test loss: {test_loss:.4f}')
+    logger.info(f'>> Client {net_id:2d} Test acc: {test_acc*100:.2f}%')
     logger.info(' ** Training complete **')
     net.to('cpu')
     return test_loss, test_acc, c_delta_para
@@ -270,8 +270,8 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
     # logger.info('>> Training accuracy: %f' % train_acc)
     # logger.info('>> Test accuracy: %f' % test_acc)
     test_acc, test_loss = evaluation(args, net, test_dataloader)
-    logger.info('>> Client {:2d} Test loss: {:.4f}'.format(net_id, loss))
-    logger.info('>> Client {:2d} Test acc: {:.2f}%'.format(net_id, acc*100))
+    logger.info(f'>> Client {net_id:2d} Test loss: {test_loss:.4f}')
+    logger.info(f'>> Client {net_id:2d} Test acc: {test_acc*100:.2f}%')
     logger.info(' ** Training complete **')
     net.to('cpu')
     return test_loss, test_acc
@@ -511,7 +511,7 @@ if __name__ == '__main__':
             if acc>best_glob_acc:
                 best_glob_acc = acc
 
-            logger.info(f'>> Global model test loss: {loss:.4f}'.format(loss))
+            logger.info(f'>> Global model test loss: {loss:.4f}')
             logger.info(f'>> Global model test accuracy: {acc:.4f}, historical best acc: {best_glob_acc:.4f}')
 
 
