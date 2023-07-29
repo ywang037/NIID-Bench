@@ -254,10 +254,10 @@ def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, tes
             epoch_loss1_collector.append(loss1.item())
             epoch_loss2_collector.append(loss2.item())
 
-        epoch_loss = sum(epoch_loss_collector) / len(epoch_loss_collector)
-        epoch_loss1 = sum(epoch_loss1_collector) / len(epoch_loss1_collector)
-        epoch_loss2 = sum(epoch_loss2_collector) / len(epoch_loss2_collector)
-        logger.info('Epoch: %d Loss: %f Loss1: %f Loss2: %f' % (epoch, epoch_loss, epoch_loss1, epoch_loss2))
+        # epoch_loss = sum(epoch_loss_collector) / len(epoch_loss_collector)
+        # epoch_loss1 = sum(epoch_loss1_collector) / len(epoch_loss1_collector)
+        # epoch_loss2 = sum(epoch_loss2_collector) / len(epoch_loss2_collector)
+        # logger.info('Epoch: %d Loss: %f Loss1: %f Loss2: %f' % (epoch, epoch_loss, epoch_loss1, epoch_loss2))
 
 
     if args.loss != 'l2norm':
