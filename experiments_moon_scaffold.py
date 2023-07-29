@@ -450,7 +450,7 @@ if __name__ == '__main__':
         party_train_dl, party_test_dl, _, _ = get_dataloader2(data_set['train_data'], data_set['test_data'], args.batch_size, 2*args.batch_size, dataidxs)
         train_dl_loc.append(party_train_dl)
 
-    best_glob_acc
+    best_glob_acc=0.0
     glob_loss, glob_acc = [], []
 
     if args.alg == 'scaffold':
