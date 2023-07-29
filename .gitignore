@@ -20,6 +20,7 @@ utils/
 clients/
 arxiv/
 logs/
+result-bench/
 
 # IPython notebook checkpoints
 .ipynb_checkpoints
