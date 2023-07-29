@@ -174,7 +174,7 @@ def train_net_scaffold(net_id, net, global_model, c_local, c_global, train_datal
 def train_net_moon(net_id, net, global_net, previous_nets, train_dataloader, test_dataloader, epochs, lr, args_optimizer, mu, temperature, args,
                       round, device="cpu"):
 
-    logger.info('Training network %s' % str(net_id))
+    # logger.info('Training network %s' % str(net_id))
 
     # train_acc = compute_accuracy(net, train_dataloader, device=device)
     # test_acc, conf_matrix = compute_accuracy(net, test_dataloader, get_confusion_matrix=True, device=device)
