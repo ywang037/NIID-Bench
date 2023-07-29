@@ -629,8 +629,8 @@ if __name__ == '__main__':
                         global_para[key] += net_para[key] * fed_avg_freqs[idx]
             global_model.load_state_dict(global_para)
 
-            logger.info('global n_training: %d' % len(train_dl_global))
-            logger.info('global n_test: %d' % len(test_dl_global))
+            # logger.info('global n_training: %d' % len(train_dl_global))
+            # logger.info('global n_test: %d' % len(test_dl_global))
 
             global_model.to(device)
             train_acc = compute_accuracy(global_model, train_dl_global, device=device)
@@ -694,8 +694,8 @@ if __name__ == '__main__':
             global_model.load_state_dict(global_para)
 
 
-            logger.info('global n_training: %d' % len(train_dl_global))
-            logger.info('global n_test: %d' % len(test_dl_global))
+            # logger.info('global n_training: %d' % len(train_dl_global))
+            # logger.info('global n_test: %d' % len(test_dl_global))
 
             global_model.to(device)
             train_acc = compute_accuracy(global_model, train_dl_global, device=device)
@@ -765,8 +765,8 @@ if __name__ == '__main__':
             test_acc, conf_matrix = compute_accuracy(global_model, test_dl_global, get_confusion_matrix=True)
 
 
-            logger.info('>> Global Model Train accuracy: %f' % train_acc)
-            logger.info('>> Global Model Test accuracy: %f' % test_acc)
+            # logger.info('>> Global Model Train accuracy: %f' % train_acc)
+            # logger.info('>> Global Model Test accuracy: %f' % test_acc)
 
             old_nets = copy.deepcopy(nets)
             for _, net in old_nets.items():
